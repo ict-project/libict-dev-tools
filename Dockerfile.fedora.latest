@@ -1,0 +1,16 @@
+FROM fedora:latest
+LABEL maintaner="Mariusz Ornowski <mariusz.ornowski@ict-project.pl>"
+LABEL description="Środowisko do kompilacji C++ (dla Fedora)"
+
+RUN yum install -y gcc gcc-c++ gdb cmake make git rpm-build && yum clean all
+RUN git config --global --add safe.directory /project
+
+ARG USER_ID
+ARG GROUP_ID
+RUN userdel -r $(getent passwd "${USER_ID}" | cut -d: -f1) 2> /dev/null || echo "User not found" && \
+    groupdel $(getent group "${GROUP_ID}" | cut -d: -f1) 2> /dev/null || echo "Group not found"
+RUN groupadd -g ${GROUP_ID} builders && \
+    useradd -u ${USER_ID} -g builders -m builder && \
+    echo 'builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER builder
