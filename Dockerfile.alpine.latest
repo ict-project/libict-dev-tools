@@ -2,7 +2,7 @@ FROM alpine:latest
 LABEL maintaner="Mariusz Ornowski <mariusz.ornowski@ict-project.pl>"
 LABEL description="Środowisko do kompilacji C++ (dla Alpine Linux)"
 
-RUN apk add --update build-base cmake git shadow || echo ok
+RUN apk add --update build-base cmake git shadow bash || echo ok
 RUN git config --global --add safe.directory /project
 
 ARG USER_ID
