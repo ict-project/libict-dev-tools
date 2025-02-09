@@ -113,7 +113,7 @@ if $CONTAINER_ENABLED ; then
   esac
 else
   case $OSTYPE in
-    linux-gnu* )
+    linux* )
       $CMAKE_COMMAND -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCPACK_GENERATOR="TZ;TGZ;STGZ;DEB;RPM"
       ;;
     darwin* )
