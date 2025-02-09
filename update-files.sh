@@ -11,6 +11,7 @@ done
 for file in $FILE_OPT; do
   echo "$TARGET_DIR/$file (if not exists)"
 done
+echo "$TARGET_DIR/source/CMakeLists.txt (if not exists)"
 echo "Do you want to continue? [y/N]"
 read -r response
 
@@ -22,6 +23,8 @@ case "$response" in
         for file in $FILE_OPT; do
             test -r "$TARGET_DIR/$file" || cp -vf "$SCRIPT_DIR/$file" "$TARGET_DIR/$file"
         done
+        mkdir -p "$TARGET_DIR/source"
+        test -r "$TARGET_DIR/source/CMakeLists.txt" || cp -vf "$SCRIPT_DIR/CMakeLists.template" "$TARGET_DIR/source/CMakeLists.txt"
         ;;
     *)
         echo "Update canceled."
