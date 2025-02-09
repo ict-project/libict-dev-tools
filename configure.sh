@@ -73,8 +73,8 @@ if $CONTAINER_ENABLED ; then
 fi
 echo "RUN_PREFIX=$RUN_PREFIX"
 ###################
-if ! $RUN_PREFIX git submodule foreach 'test -f Makefile && make clean' ; then
-  echo "git submodule foreach make clean failed! ($?)" 
+if ! $RUN_PREFIX git submodule foreach 'test -f configure.sh && ./configure.sh' ; then
+  echo "git submodule foreach configure.sh failed! ($?)" 
   exit 11
 fi
 if ! $RUN_PREFIX git submodule foreach 'test -f Makefile && make' ; then
