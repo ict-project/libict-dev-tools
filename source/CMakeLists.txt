@@ -9,6 +9,8 @@ project(libict-${LIBRARY_NAME})
 set(CMAKE_CXX_STANDARD 17)
 find_package(Threads)
 
+include(../git-include.cmake)
+
 add_executable(${PROJECT_NAME}-test test.hpp test.cpp)
 target_link_libraries(${PROJECT_NAME}-test ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(${PROJECT_NAME}-test ${CMAKE_LINK_LIBS})
