@@ -24,7 +24,7 @@ case "$response" in
             test -r "$TARGET_DIR/$file" || cp -vf "$SCRIPT_DIR/$file" "$TARGET_DIR/$file"
         done
         mkdir -p "$TARGET_DIR/source"
-        test -r "$TARGET_DIR/source/CMakeLists.txt" || cp -vf "$SCRIPT_DIR/CMakeLists.template" "$TARGET_DIR/source/CMakeLists.txt"
+        test -r "$TARGET_DIR/source/CMakeLists.txt" || cp -vf "$SCRIPT_DIR/CMakeLists-template.cmake" "$TARGET_DIR/source/CMakeLists.txt"
         ;;
     *)
         echo "Update canceled."
