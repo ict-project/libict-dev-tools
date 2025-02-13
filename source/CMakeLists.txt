@@ -13,7 +13,7 @@ include(../git-include.cmake)
 
 add_executable(${PROJECT_NAME}-test test.hpp test.cpp)
 target_link_libraries(${PROJECT_NAME}-test ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(${PROJECT_NAME}-test ${CMAKE_LINK_LIBS})
+
 target_compile_definitions(${PROJECT_NAME}-test PUBLIC -DENABLE_TESTING)
 
 ################################################################
@@ -21,5 +21,6 @@ enable_testing()
 
 add_test(NAME ict-dev-tools-tc1 COMMAND ${PROJECT_NAME}-test ict dev_tools tc1)
 
+################################################################
 include(../cpack-include.cmake)
 ################################################################
