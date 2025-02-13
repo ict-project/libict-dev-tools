@@ -1,6 +1,8 @@
 #set(CPACK_GENERATOR "TZ;TGZ;STGZ;DEB;RPM") # Linux
 #set(CPACK_GENERATOR "TZ;TGZ;STGZ")         # MacOS
 
+execute_process(COMMAND echo "${PROJECT_NAME}" OUTPUT_FILE ${CMAKE_BINARY_DIR}/project-name.txt)
+
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VENDOR "ict-project.pl")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mariusz Ornowski <mariusz.ornowski@ict-project.pl>")
