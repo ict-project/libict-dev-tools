@@ -2,7 +2,7 @@ FROM fedora:latest
 LABEL maintaner="Mariusz Ornowski <mariusz.ornowski@ict-project.pl>"
 LABEL description="Środowisko do kompilacji C++ (dla Fedora)"
 
-RUN yum install -y gcc gcc-c++ gdb cmake make git rpm-build && yum clean all
+RUN yum install -y gcc gcc-c++ gdb cmake make git openssl-devel rpm-build && yum clean all
 RUN git config --global --add safe.directory /project
 
 ARG USER_ID

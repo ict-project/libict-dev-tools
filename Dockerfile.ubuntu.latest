@@ -2,7 +2,7 @@ FROM ubuntu:latest
 LABEL maintaner="Mariusz Ornowski <mariusz.ornowski@ict-project.pl>"
 LABEL description="Środowisko do kompilacji C++ (dla Ubuntu)"
 
-RUN apt-get update && apt-get install -y build-essential cmake git rpm
+RUN apt-get update && apt-get install -y build-essential cmake libssl-dev git rpm
 RUN git config --global --add safe.directory /project
 
 ARG USER_ID

@@ -2,7 +2,7 @@ FROM debian:latest
 LABEL maintaner="Mariusz Ornowski <mariusz.ornowski@ict-project.pl>"
 LABEL description="Środowisko do kompilacji C++ (dla Debian)"
 
-RUN apt-get update && apt-get install -y build-essential cmake git rpm
+RUN apt-get update && apt-get install -y build-essential libssl-dev cmake git rpm
 RUN git config --global --add safe.directory /project
 
 ARG USER_ID
