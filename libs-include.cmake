@@ -1,1 +1,2 @@
 FILE(GLOB CMAKE_LINK_LIBS ../*/build/*.a)
+FILE(GLOB CMAKE_INCL_HEADERS ../*/source/*.hpp)
