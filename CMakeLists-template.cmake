@@ -29,11 +29,12 @@ add_library(ict-shared-${LIBRARY_NAME} SHARED ${CMAKE_SOURCE_FILES})
 target_link_libraries(ict-shared-${LIBRARY_NAME} ${CMAKE_THREAD_LIBS_INIT})
 set_target_properties(ict-shared-${LIBRARY_NAME}  PROPERTIES OUTPUT_NAME ict-${LIBRARY_NAME})
 
-add_executable(${PROJECT_NAME}-test ${CMAKE_HEADER_LIST} test.cpp)
-target_link_libraries(${PROJECT_NAME}-test ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(${PROJECT_NAME}-test ict-static-${LIBRARY_NAME})
-target_link_libraries(${PROJECT_NAME}-test ${CMAKE_LINK_LIBS})
-target_compile_definitions(${PROJECT_NAME}-test PUBLIC -DENABLE_TESTING)
+if (CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+  add_executable(${PROJECT_NAME}-test ${CMAKE_HEADER_LIST} ${CMAKE_SOURCE_FILES} test.cpp)
+  target_link_libraries(${PROJECT_NAME}-test ${CMAKE_THREAD_LIBS_INIT})
+  target_link_libraries(${PROJECT_NAME}-test ${CMAKE_LINK_LIBS})
+  target_compile_definitions(${PROJECT_NAME}-test PUBLIC -DENABLE_TESTING)
+endif()
 
 ################################################################
 install(TARGETS ict-static-${LIBRARY_NAME} ict-shared-${LIBRARY_NAME} DESTINATION lib COMPONENT libraries)
@@ -42,11 +43,11 @@ install(
   DESTINATION include/libict/${LIBRARY_NAME} COMPONENT headers
 )
 ################################################################
-enable_testing()
-
-add_test(NAME ict-template-tc1 COMMAND ${PROJECT_NAME}-test ict template tc1)
-# ...
-
+if (CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES RelWithDebInfo)
+  enable_testing()
+  add_test(NAME ict-template-tc1 COMMAND ${PROJECT_NAME}-test ict template tc1)
+  # ...
+endif()
 ################################################################
 include(../libict-dev-tools/cpack-include.cmake)
 ################################################################
