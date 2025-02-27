@@ -7,7 +7,7 @@ INCLUDE_DIR=$TARGET_DIR/include
 [ ! -d $INCLUDE_DIR ] &&  { echo "Katalog $INCLUDE_DIR nie istnieje."; exit 1; }
 
 # Przejście po wszystkich katalogach libict-*
-for dir in $(find $TARGET_DIR -mindepth 0 -maxdepth 0 -type d -name "libict-*"); do
+for dir in $(find $TARGET_DIR -mindepth 1 -maxdepth 1 -type d -name "libict-*"); do
     # Na podstawie nazwy katalogu utwórz nazwę (usunięcie prefiksu 'libict-')
     libname=$(basename $dir | sed 's/libict-//')
     # Przejście po wszystkich plikach nagłówkowych w katalogu
